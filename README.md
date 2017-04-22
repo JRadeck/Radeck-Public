@@ -1,4 +1,4 @@
-# In Progress
+# ConfigMgr and related scripts
 
 
 Author:
