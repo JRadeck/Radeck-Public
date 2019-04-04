@@ -1,4 +1,4 @@
-#Finnished cab to import in ConfigMgr can be downloade here
+#Finished cab to import in ConfigMgr can be downloade here
 #https://1drv.ms/f/s!AhuAzOv7Sur5g_ARZ2Xf70QGvyFmfA
 
 #In the Discovery script put
