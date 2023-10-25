@@ -28,8 +28,15 @@
      1.0.2 - (2023-10-24) Add Suffix and Prefix to group namne
      1.0.3 - (2023-10-25) Add MDM to dynamic rule to avoid server ending upp in groups
      1.0.4 - (2023-10-25) Coreccted Prefix and Suffix order and updated DESCRIPTION text
+     1.0.4 - (2023-10-25) Check if Enterprice App vaule worked with Try Catch
 
  #>
+
+#For use in a runbook
+#$TenantID = Get-AutomationVariable -Name 'TenantID'
+#$ClientID = Get-AutomationVariable -Name 'ApplicationID'
+#$ClientSecret = Get-AutomationVariable -Name 'Certificate'
+
 
 $TenantID = ''
 $ClientID = ''
@@ -46,8 +53,16 @@ $Body = @{
     Client_Id     = $ClientID
     Client_Secret = $ClientSecret
 }
- 
+
+Try {
 $Connection = Invoke-RestMethod -Uri https://login.microsoftonline.com/$TenantID/oauth2/v2.0/token -Method POST -Body $body
+}
+Catch {
+
+    Write-Output "Getting Enerprise App value has failed"
+
+}
+
 $Token = ConvertTo-SecureString -AsPlainText $Connection.access_token -Force
 
 Connect-MgGraph  -AccessToken  $Token -NoWelcome
