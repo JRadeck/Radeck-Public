@@ -15,7 +15,7 @@
  
  
  .NOTES
-     FileName:    Get Model and from Intune and create EntraID groups.ps1
+     FileName:    Get Model from Intune and create EntraID groups.ps1
      Author:      Johnny Radeck
      Contact:     @Johnny_Radeck
      Created:     2023-09-21
