@@ -35,7 +35,7 @@
 #For use in a runbook
 #$TenantID = Get-AutomationVariable -Name 'TenantID'
 #$ClientID = Get-AutomationVariable -Name 'ApplicationID'
-#$ClientSecret = Get-AutomationVariable -Name 'Certificate'
+#$ClientSecret = Get-AutomationVariable -Name 'Secret'
 
 
 $TenantID = ''
