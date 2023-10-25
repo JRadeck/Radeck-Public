@@ -28,7 +28,7 @@
      1.0.2 - (2023-10-24) Add Suffix and Prefix to group namne
      1.0.3 - (2023-10-25) Add MDM to dynamic rule to avoid server ending upp in groups
      1.0.4 - (2023-10-25) Coreccted Prefix and Suffix order and updated DESCRIPTION text
-     1.0.4 - (2023-10-25) Check if Enterprice App vaule worked with Try Catch
+     1.0.5 - (2023-10-25) Check if Enterprice App vaule worked with Try Catch
 
  #>
 
