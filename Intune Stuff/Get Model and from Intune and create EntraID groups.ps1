@@ -5,6 +5,10 @@
  .DESCRIPTION
     Check Intune for models and then creates EntraID groups based on that.
     Lenovo will have easily readable group name and the crap name in the dynamic query.
+    You need to install moudule
+    Microsoft.Graph.Authentication (Install-Module Microsoft.Graph.Authentication)
+    Microsoft.Graph.DeviceManagement (Install-Module Microsoft.Graph.DeviceManagement)
+    Microsoft.Graph.Groups (Install-Module Microsoft.Graph.Groups)
     
     
  .EXAMPLE
@@ -23,6 +27,7 @@
      1.0.1 - (2023-09-27) Add param and update description
      1.0.2 - (2023-10-24) Add Suffix and Prefix to group namne
      1.0.3 - (2023-10-25) Add MDM to dynamic rule to avoid server ending upp in groups
+     1.0.4 - (2023-10-25) Coreccted Prefix and Suffix order and updated DESCRIPTION text
 
  #>
 
@@ -31,8 +36,9 @@ $ClientID = ''
 $ClientSecret = ''
 
 
-$GroupNameSuffix = 'EID - DYN - Model'
-$GroupNamePrefix = ''
+$GroupNamePrefix = 'EID - DYN - Model'
+$GroupNameSuffix = ''
+
 
 $Body = @{
     Grant_Type    = "client_credentials"
@@ -60,7 +66,7 @@ foreach ($Item in $IntuneAll) {
         $LenovoModel = (($LenovoModels | Where-Object { $_.types.type -eq "$(($Item.Model).Substring(0,4))" }).Name).Split(' ')
         $Model = [String]$LenovoModel[0, 1, 2, 3]
 
-        $GroupName = ("$GroupNameSuffix $Model $GroupNamePrefix").Trim()
+        $GroupName = ("$GroupNamePrefix $Model $GroupNameSuffix").Trim()
 
         If (!($CheckGroup = Get-MgGroup -All | Where-Object { $_.DisplayName -eq "$GroupName" })) {
                 
@@ -75,7 +81,7 @@ foreach ($Item in $IntuneAll) {
 
         $Model = [String]$Item.Model
 
-        $GroupName = ("$GroupNameSuffix $Model $GroupNamePrefix").Trim()
+        $GroupName = ("$GroupNamePrefix $Model $GroupNameSuffix").Trim()
 
         If (!($CheckGroup = Get-MgGroup -All | Where-Object { $_.DisplayName -eq "$GroupName" })) {
                 
